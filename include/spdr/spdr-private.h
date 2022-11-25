@@ -9,7 +9,7 @@
 struct SPDR_Context;
 
 enum SPDR_Event_Type {
-        SPDR_EVENT = 'I',
+        SPDR_EVENT = 'i',
         SPDR_BEGIN = 'B',
         SPDR_END = 'E',
         SPDR_METADATA = 'M',

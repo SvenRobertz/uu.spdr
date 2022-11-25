@@ -137,7 +137,7 @@ int main(int argc, char** argv)
                 fflush(stdout);
                 assert(equal_zstring(event->cat, "<cat>"));
                 assert(equal_zstring(event->name, "<name>"));
-                assert(event->phase == 'I');
+                assert(event->phase == 'i');
                 assert(event->str_count == 0);
                 assert(event->int_count == 1);
                 assert(event->float_count == 0);

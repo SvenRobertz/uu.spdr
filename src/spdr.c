@@ -381,6 +381,10 @@ spdr_internal void event_log(const struct SPDR_Context *context,
         chars_catjsonstr(&buffer, event->name);
         chars_catsprintf(&buffer, "\"");
         chars_catsprintf(&buffer, " \"%c\"", event->phase);
+        // TODO: hard-coded to global event for now to keep parameter count the same
+        if(event->phase == SPDR_EVENT) {
+            chars_catsprintf(&buffer, " \"s\":\"g\"");
+        }
 
         {
                 int arg_i;
@@ -554,7 +558,12 @@ spdr_internal void log_json(const struct SPDR_Context *context,
         chars_catsprintf(&string, ",\"name\":\"");
         chars_catjsonstr(&string, e->name);
         chars_catsprintf(&string, "\"");
-        chars_catsprintf(&string, ",\"ph\":\"%c\",\"args\":{", e->phase);
+        chars_catsprintf(&string, ",\"ph\":\"%c\"", e->phase);
+        // TODO: hard-coded to global event for now to keep parameter count the same
+        if(e->phase == SPDR_EVENT) {
+            chars_catsprintf(&string, ",\"s\":\"g\"");
+        }
+        chars_catsprintf(&string, ",\"args\":{");
 
         for (i = 0; i < e->str_count; i++) {
                 chars_catsprintf(&string, "%s\"%s\":\"", arg_prefix,
