@@ -13,6 +13,8 @@
  */
 #define SPDR_T(x) (!0)
 
+typedef size_t AO_t;
+
 struct SPDR_Event {
         uint64_t ts_ticks;
         uint32_t pid;

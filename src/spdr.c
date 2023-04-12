@@ -6,7 +6,6 @@
 #pragma clang diagnostic ignored "-Wbad-function-cast"
 #pragma clang diagnostic ignored "-Wcast-qual"
 #endif
-#include "../deps/libatomic_ops-7.6.6/src/atomic_ops.h"
 #if defined(__clang__)
 #pragma clang diagnostic pop
 #endif
@@ -37,6 +36,13 @@
 #define SPDR_PRI64 "%" PRINTF_INT64_MODIFIER "d"
 #define SPDR_PRIu64 "%" PRINTF_INT64_MODIFIER "u"
 
+#define AO_fetch_and_add_acquire(a, b)                                         \
+        __atomic_fetch_add(a, b, __ATOMIC_ACQUIRE)
+#define AO_fetch_and_add_release(a, b)                                         \
+        __atomic_fetch_add(a, b, __ATOMIC_RELEASE)
+#define AO_store(a, b) __atomic_store_n(a, b, __ATOMIC_RELAXED)
+#define AO_load(a) __atomic_load_n(a, __ATOMIC_RELAXED)
+#define AO_load_acquire(a) __atomic_load_n(a, __ATOMIC_ACQUIRE)
 /**
  * Grow the memory buffer until capacity is reached.
  *
